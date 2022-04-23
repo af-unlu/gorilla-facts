@@ -23,7 +23,7 @@
     "asbuild": "yarn asbuild:debug && yarn asbuild:release",
     "start": "npx serve .",
     "build:release": "asb",
-    "deploy": "near dev-deploy build/release/todos-crud-contract.wasm",
+    "deploy": "near dev-deploy build/release/gorilla-facts.wasm",
     "dev": "yarn build:release && yarn deploy",
     "test": "asp"
   },

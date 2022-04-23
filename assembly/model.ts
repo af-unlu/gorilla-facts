@@ -71,7 +71,7 @@ export class Fact {
         Facts.set(id, fact);
         return fact;
     }
-
+    
     static deny(id: u32): Fact {
         const fact = this.findById(id);
         fact.isTrue = false;
