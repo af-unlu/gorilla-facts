@@ -21,7 +21,7 @@ This project is just to test the basic concepts.
 - More fields about news, about news political leaning etc.
 - Each voters would have vote value, if you keep vote for fake news or lobbied news your vote value would go down.
 - A rank system for some user actions for example if one user keeps voting accurately, user's voting value would go up.
-- anti-lobbying mechanism to prevent voter users from keep voting for same leaning news.
+- Anti-lobbying mechanism to prevent voter users from keep voting for same leaning news.
 
 ## Installation
 
