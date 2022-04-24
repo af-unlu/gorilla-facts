@@ -22,10 +22,17 @@ export class Contract {
     return Fact.findById(id);
   }
 
-  //near call $CONTRACT get '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
-  get(offset: u32, limit: u32 = 10): Fact[] {
+  //near call $CONTRACT getByRange '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
+  getByRange(offset: u32, limit: u32 = 10): Fact[] {
     return Fact.find(offset, limit);
   }
+
+  //near call $CONTRACT getVerified '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
+  getVerified(offset: u32, limit: u32 = 10): Fact[] {
+    //returns only verified news between a range of news
+    return Fact.find(offset, limit).filter(x=>(x.hasChecked && x.isTrue));
+  }
+
   //near call $CONTRACT verify '''{"""id""":2303316000}''' --accountId afy.testnet
   verify(id: u32): Fact {
     // good new provider get 2+1
@@ -38,49 +45,27 @@ export class Contract {
       this.auth();
       return Fact.deny(id);
   }
-  //
-  getOwner():string{
-    return this.owner.toString();
-  }
-
+  
   //near call $CONTRACT testAuth({}) --accountId afy.testnet
   testAuth():string{
     this.auth();
     return "Authorized"
   }
 
+  //near call $CONTRACT update '''{"""id""":SOME_ID_HERE, """updates""":{"""info""":"""SOMESTRING""", """reference""":"""SOMESTRING""","""isTrue""":false,"""hasChecked""":true} }''' --accountId YOUR_ACCOUNT_ID.testnet
   update(id: u32, updates: PartialFact): Fact {
+    this.auth();
     return Fact.findByIdAndUpdate(id, updates);
   }
 
-  del(id: u32): void {
+  //near call $CONTRACT delete '''{"""id""":2303316000}''' --accountId afy.testnet
+  delete(id: u32): void {
+    this.auth();
     Fact.findByIdAndDelete(id);
   }
   //Its like a middleware, checks the caller
   private auth(): void {
     const caller = Context.sender;
-    assert(this.owner == caller, "Only the owner of this contract may call this method")
+    assert(this.owner == caller, "Not Authorized")
   }
 }
-
-/*
-export function create(info: string, reference: string, postedBy: AccountId): Fact {
-  return Fact.insert(info,reference,postedBy);
-}
-
-export function getById(id: u32): Fact {
-  return Fact.findById(id);
-}
-
-export function get(offset: u32, limit: u32 = 10): Fact[] {
-  return Fact.find(offset, limit);
-}
-
-export function update(id: u32, updates: PartialFact): Fact {
-  return Fact.findByIdAndUpdate(id, updates);
-}
-
-export function del(id: u32): void {
-  Fact.findByIdAndDelete(id);
-}
-*/
