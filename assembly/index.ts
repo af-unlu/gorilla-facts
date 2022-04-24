@@ -3,7 +3,7 @@ import { Context} from "near-sdk-core"
 import { Fact ,PartialFact} from "./model";
 import { AccountId} from "./utils";
 
-//near call $CONTRACT init '''{"""owner""":"""afy.testnet"""}''' --accountId $CONTRACT
+//near call $CONTRACT init '''{"""owner""":"""YOUR_ACCOUNT_ID.testnet"""}''' --accountId $CONTRACT
 //logging.log() => printf
 @nearBindgen
 export class Contract {
@@ -13,7 +13,7 @@ export class Contract {
   constructor(owner: AccountId, allow_anonymous: bool = true) {
     this.owner = owner
   }
-  //near call $CONTRACT create '''{"""info""":"""Earth Is Flat!!""","""reference""":"""Trust me bro"""}''' --accountId afy.testnet
+  //near call $CONTRACT create '''{"""info""":"""Earth Is Flat!!""","""reference""":"""Trust me bro"""}''' --accountId YOUR_ACCOUNT_ID.testnet
   create(info: string, reference: string): Fact {
     //you need to give 2 for post a new
     return Fact.insert(info,reference,Context.predecessor);
@@ -22,31 +22,31 @@ export class Contract {
     return Fact.findById(id);
   }
 
-  //near call $CONTRACT getByRange '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
+  //near call $CONTRACT getByRange '''{"""offset""":0,"""limit""":2}''' --accountId YOUR_ACCOUNT_ID.testnet
   getByRange(offset: u32, limit: u32 = 10): Fact[] {
     return Fact.find(offset, limit);
   }
 
-  //near call $CONTRACT getVerified '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
+  //near call $CONTRACT getVerified '''{"""offset""":0,"""limit""":2}''' --accountId YOUR_ACCOUNT_ID.testnet
   getVerified(offset: u32, limit: u32 = 10): Fact[] {
     //returns only verified news between a range of news
     return Fact.find(offset, limit).filter(x=>(x.hasChecked && x.isTrue));
   }
 
-  //near call $CONTRACT verify '''{"""id""":2303316000}''' --accountId afy.testnet
+  //near call $CONTRACT verify '''{"""id""":2501694063}''' --accountId YOUR_ACCOUNT_ID.testnet
   verify(id: u32): Fact {
     // good new provider get 2+1
     this.auth();
     return Fact.verify(id);
   }
-  //near call $CONTRACT deny '''{"""id""":2303316000}''' --accountId afy.testnet
+  //near call $CONTRACT deny '''{"""id""":2303316000}''' --accountId YOUR_ACCOUNT_ID.testnet
   deny(id: u32): Fact {
     //the bad news provider wont get his 2 back
       this.auth();
       return Fact.deny(id);
   }
   
-  //near call $CONTRACT testAuth({}) --accountId afy.testnet
+  //near call $CONTRACT testAuth({}) --accountId YOUR_ACCOUNT_ID.testnet
   testAuth():string{
     this.auth();
     return "Authorized"
@@ -58,7 +58,7 @@ export class Contract {
     return Fact.findByIdAndUpdate(id, updates);
   }
 
-  //near call $CONTRACT delete '''{"""id""":2303316000}''' --accountId afy.testnet
+  //near call $CONTRACT delete '''{"""id""":2303316000}''' --accountId YOUR_ACCOUNT_ID.testnet
   delete(id: u32): void {
     this.auth();
     Fact.findByIdAndDelete(id);
