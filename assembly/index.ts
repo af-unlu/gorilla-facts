@@ -13,7 +13,7 @@ export class Contract {
   constructor(owner: AccountId, allow_anonymous: bool = true) {
     this.owner = owner
   }
-  //near call $CONTRACT create '''{"""info""":"""Earth Is Flat!!""","""reference""":"""Trust me bro"""}'''
+  //near call $CONTRACT create '''{"""info""":"""Earth Is Flat!!""","""reference""":"""Trust me bro"""}''' --accountId afy.testnet
   create(info: string, reference: string): Fact {
     //you need to give 2 for post a new
     return Fact.insert(info,reference,Context.predecessor);

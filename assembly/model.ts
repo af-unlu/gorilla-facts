@@ -1,6 +1,7 @@
 // contract/assembly/model.ts
-import { PersistentUnorderedMap, math } from "near-sdk-as";
+import { PersistentUnorderedMap, RNG , math } from "near-sdk-as";
 import { AccountId} from "./utils";
+
 
 export const Facts = new PersistentUnorderedMap<u32, Fact>("facts");
 // PartialFact class
@@ -21,7 +22,9 @@ export class Fact {
     hasChecked: bool;
     postedBy: AccountId;
     constructor(info: string, reference: string, postedBy: AccountId) {
-        this.id = math.hash32<string>(info);
+        const rng = new RNG<u32>(1, u32.MAX_VALUE);
+        const roll = rng.next();
+        this.id = math.hash32<string>(info+roll.toString());
         this.info = info;
         this.reference = reference;
         this.isTrue = false;
