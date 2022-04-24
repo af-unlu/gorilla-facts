@@ -33,13 +33,13 @@ export class Contract {
     return Fact.find(offset, limit).filter(x=>(x.hasChecked && x.isTrue));
   }
 
-  //near call $CONTRACT verify '''{"""id""":2501694063}''' --accountId YOUR_ACCOUNT_ID.testnet
+  //near call $CONTRACT verify '''{"""id""":SOME_ID_HERE}''' --accountId YOUR_ACCOUNT_ID.testnet
   verify(id: u32): Fact {
     // good new provider get 2+1
     this.auth();
     return Fact.verify(id);
   }
-  //near call $CONTRACT deny '''{"""id""":2303316000}''' --accountId YOUR_ACCOUNT_ID.testnet
+  //near call $CONTRACT deny '''{"""id""":SOME_ID_HERE}''' --accountId YOUR_ACCOUNT_ID.testnet
   deny(id: u32): Fact {
     //the bad news provider wont get his 2 back
       this.auth();
@@ -58,7 +58,7 @@ export class Contract {
     return Fact.findByIdAndUpdate(id, updates);
   }
 
-  //near call $CONTRACT delete '''{"""id""":2303316000}''' --accountId YOUR_ACCOUNT_ID.testnet
+  //near call $CONTRACT delete '''{"""id""":SOME_ID_HERE}''' --accountId YOUR_ACCOUNT_ID.testnet
   delete(id: u32): void {
     this.auth();
     Fact.findByIdAndDelete(id);
