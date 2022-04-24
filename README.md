@@ -33,13 +33,11 @@ yarn
 ```
 
 #### To build and deploy
-
 ```sh
 yarn build:release
 near dev-deploy ./build/release/gorilla-facts.wasm
 ```
-##### or 
-
+##### Or 
 ```sh
 yarn dev
 ```
@@ -48,6 +46,37 @@ yarn dev
 #### Later you need to specify owner of this contract
 ```sh
  near call $CONTRACT init '''{"""owner""":"""YOUR_ACCOUNT_NAME.testnet"""}''' --accountId $CONTRACT
+```
+
+## Usage
+
+#### To test authentication
+```sh
+ near call $CONTRACT testAuth({}) --accountId YOUR_ACCOUNT_NAME.testnet
+```
+#### To insert news
+```sh
+ near call $CONTRACT create '''{"""info""":"""Earth Is Flat!!""","""reference""":"""Trust me bro"""}''' --accountId YOUR_ACCOUNT_NAME.testnet
+```
+
+#### To see news between a range
+```sh
+ near call $CONTRACT getByRange '''{"""offset""":0,"""limit""":2}''' --accountId YOUR_ACCOUNT_NAME.testnet
+```
+
+#### To see only verified news between a range
+```sh
+ near call $CONTRACT getVerified '''{"""offset""":0,"""limit""":2}''' --accountId afy.testnet
+```
+
+#### To verify a new
+```sh
+near call $CONTRACT verify '''{"""id""":NEWS_ID}''' --accountId YOUR_ACCOUNT_NAME.testnet
+```
+
+#### To deny a new
+```sh
+near call $CONTRACT deny '''{"""id""":NEWS_ID}''' --accountId YOUR_ACCOUNT_NAME.testnet
 ```
 
 [//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
