@@ -3,8 +3,9 @@ import { Context} from "near-sdk-core"
 import { Fact ,PartialFact} from "./model";
 import { AccountId} from "./utils";
 
+//After the deploy
 //near call $CONTRACT init '''{"""owner""":"""YOUR_ACCOUNT_ID.testnet"""}''' --accountId $CONTRACT
-//logging.log() => printf
+
 @nearBindgen
 export class Contract {
   
