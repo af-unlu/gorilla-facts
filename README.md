@@ -1,5 +1,5 @@
 # gorilla-facts
-#### Basic Explanation in broken English(!) : https://www.loom.com/share/45be6480d9f2489e8d8e5b7b5997aa14
+#### Basic Explanation with loom in broken English(!) : https://www.loom.com/share/45be6480d9f2489e8d8e5b7b5997aa14
 ## Summary : An anonymous, decentralized news provider. anti-censorship, anti-lobbying news source.
 - Written in mostly TypeScript.
 - Using Near Protocol & Near SDK.
