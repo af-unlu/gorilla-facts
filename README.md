@@ -43,6 +43,9 @@ near dev-deploy ./build/release/gorilla-facts.wasm
 yarn dev
 ```
 #### I assume you already know whats $CONTRACT etc
+```cmd
+ set CONTRACT dev-xxxxxxxxxxx
+```
 
 #### Later you need to specify owner of this contract
 ```sh
