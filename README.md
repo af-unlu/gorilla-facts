@@ -73,28 +73,28 @@ yarn dev
 ```
 
 #### To see only verified news between a range
--Filtering only verified news.
--Returns list of verified news.
+- Filtering only verified news.
+- Returns list of verified news.
 ```sh
  near call $CONTRACT getVerified '{"offset":0,"limit":2}' --YOUR_ACCOUNT_NAME.testnet
 ```
 
 #### To verify a new - Only owner
--Only Owner can call this function properly
+- Only Owner can call this function properly
 -Sets isTrue and hasChecked fields of new of given ID ( False,True). 
 ```sh
 near call $CONTRACT verify '{"id":NEWS_ID}' --accountId YOUR_ACCOUNT_NAME.testnet
 ```
 
 #### To deny a new - Only owner
--Only Owner can call this function properly
--Sets isTrue and hasChecked fields of new of given ID ( True,True). 
+- Only Owner can call this function properly
+- Sets isTrue and hasChecked fields of new of given ID ( True,True). 
 ```sh
 near call $CONTRACT deny '{"id":NEWS_ID}' --accountId YOUR_ACCOUNT_NAME.testnet
 ```
 
 #### To update a new - Only owner
--Replaces the editable fields of the new with new object.
+- Replaces the editable fields of the new with new object.
 ```sh
 near call $CONTRACT update '{"id":SOME_ID_HERE, "updates":{"info":"SOMESTRING", "reference":"SOMESTRING","isTrue":false,"hasChecked":true} }' --accountId YOUR_ACCOUNT_NAME.testnet
 ``` 
